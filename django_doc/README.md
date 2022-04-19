@@ -1,6 +1,7 @@
 # Build a Django app
-## Using Python
+Using Python and Postgresql
 
+## Getting started
 1. Create a database for the project (using Postgresql)
 ```
 createdb <DATABASE_NAME>
@@ -108,3 +109,17 @@ def home(request):
     return HttpResponse('Hello World')
 
 ```
+## Using Django Templates
+
+1. Initialize a templates directory
+```
+mkdir main_app/templates
+touch main_app/templates/base.html
+touch main_app/templates/home.html
+touch main_app/templates/about.html
+```
+- base.html will hold all of the HTML code that persists throughout the entire app (e.g. stylesheet links, navbar, footer, etc.)
+  > Think _Template Inheritance_
+  > Take note of the `{% block content %}` and `{% endblock %}` tags
+
+
