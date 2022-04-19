@@ -1,7 +1,6 @@
 # Build a Django app
 ## Using Python
 
-### Starting a Project:
 1. Create a database for the project (using Postgresql)
 ```
 createdb <DATABASE_NAME>
@@ -97,4 +96,15 @@ urlpatterns = [
     path('things/create', views.ThingCreate.as_view(), name='things_create'),
 ]
 ```
+10. Set up view functions
+- views.py is where you'll be adding all the functions and Python to make your app work
+```Python
+# in main_app/views.py
+from django.http import HttpResponse
+# this is starter code - once you add more refined HTML templates you won't need HttpResponse
 
+# Create views
+def home(request):
+    return HttpResponse('Hello World')
+
+```
