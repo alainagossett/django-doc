@@ -122,4 +122,25 @@ touch main_app/templates/about.html
   > Think _Template Inheritance_
   > Take note of the `{% block content %}` and `{% endblock %}` tags
 
+2. All other templates will include `{% extends base.html %}` and `{% block content %}` at the top and `{% endblock %}` at the bottom
 
+3. To include CSS, JavaScript, etc. to extend the app's functionality, you'll need a static directory
+```
+mkdir main_app/static
+mkdir main_app/static/css
+mkdir main_app/static/js
+
+touch main_app/static/css/style.css
+touch main_app/static/js/script.js
+```
+- To link the style.css file to your templates, add to base.html:
+```Python
+# at top of base.html
+{% load static %}
+
+# in the <head> section
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+# to add your JavaScript file, add near bottom of <head>
+<script defer src="{% static 'js/script.js' %}"></script>
+```
