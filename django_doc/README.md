@@ -44,3 +44,57 @@ INSTALLED APPS = [
 ```
 python manage.py runserver
 ```
+- You'll need to go to http://127.0.0.1:8000/ (or whatever URL is shown in the terminal) in your browser
+- You should see an animated rocket ship
+
+7. Connect to your database in settings.py
+> In the DATABASES section:
+```
+DATABASES = {  
+    'default': {  
+        'ENGINE': 'django.db.backends.postgresql',  
+        'NAME': 'django-example',
+    }
+}
+```
+
+8. Transfer our migrations to the database
+```
+CTRL + C >> shuts down server first
+python manage.py migrate
+```
+
+9. Connect our project (PROJECT_NAME) to the django app (main_app)
+```
+touch main_app/urls.py
+```
+- Import paths to APP_NAME/urls.py file
+```Python
+# add 'include' to import statement
+
+from django.urls import path, include
+
+# add to urlpatterns section:
+
+path('', include('main_app.urls')),
+
+# if you add authentication or other features, you might need to also add:
+
+path('accounts/', include('django.contrib.auth.urls'))
+```
+- Import paths and url patterns to main_app/urls.py file
+- Use views or Class Based Views
+```Python
+from django.urls import path
+# You'll also import views
+from . import views
+
+# urls will follow a similar format
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('things/', views.ThingList.as_view(), name='things_index'),
+    path('things/create', views.ThingCreate.as_view(), name='things_create'),
+]
+```
+
